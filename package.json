@@ -1,0 +1,43 @@
+{
+  "name": "koyoh-commandeditor-desktop",
+  "productName": "KOYOH-CommandEditor",
+  "version": "1.0.0",
+  "description": "The application can edit the commands on a GUI basis and output them in a form that can be compiled by GSE.  \r Developed with Electron and [JSON Editor](https://github.com/json-editor/json-editor)",
+  "author": "Kaiji Takeuchi",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "build": {
+    "appId": "com.electron.koyoh-motion-visualizar-desktop",
+    "copyright": "Copyright © 2023 Kaiji Takeuchi",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "resource",
+      "src",
+      "package.json",
+      "package-lock.json"
+    ],
+    "mac": {
+      "icon": "resource/image/icon_mac.icns",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "icon": "resource/image/icon_win.ico",
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^23.2.1",
+    "electron-builder": "^23.6.0"
+  }
+}
