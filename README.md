@@ -5,7 +5,7 @@ Developed with Electron and [JSON Editor](https://github.com/json-editor/json-ed
 
 ## Get started
 
-### npm & yarn
+### npm
 
 Node.js is required. If you have not installed Node.js, please install it from the [official page](https://nodejs.org/en).
 
