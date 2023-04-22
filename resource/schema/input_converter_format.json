@@ -1,0 +1,1369 @@
+{
+    "title": "Input format for the 'change control parameters command' conversion tool",
+    "description": "The JSON generated from this schema can be deciphered by GSE or SILS through a conversion tool.",
+    "required": [
+        "converter",
+        "commands"
+    ],
+    "properties": {
+        "converter": {
+            "title": "Converter type",
+            "description": "Please select the converter you wish to use for command conversion.",
+            "type": "string",
+            "enum": [
+                "gse",
+                "sils"
+            ],
+            "default": "gse"
+        },
+        "commands": {
+            "title": "Commands",
+            "description": "Please add the contents of the command you wish to generate.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "title": "Command",
+                "type": "object",
+                "default": {},
+                "required": [
+                    "elements"
+                ],
+                "properties": {
+                    "time": {
+                        "title": "Command execution time",
+                        "description": "Specify the command execution time in seconds.",
+                        "type": "integer",
+                        "default": 0,
+                        "minimum": 0,
+                        "maximum": 4294967295,
+                        "examples": [
+                            0
+                        ]
+                    },
+                    "type": {
+                        "title": "Command type",
+                        "description": "Command type is a fixed string.",
+                        "type": "string",
+                        "default": "control_parameter_change",
+                        "const": "control_parameter_change",
+                        "options": {
+                            "hidden": true
+                        }
+                    },
+                    "elements": {
+                        "title": "Command Elements",
+                        "description": "Command Elements of the ControlParameterChange command.",
+                        "type": "object",
+                        "default": {},
+                        "required": [
+                            "data",
+                            "apply_bit"
+                        ],
+                        "properties": {
+                            "data": {
+                                "title": "Argument data",
+                                "description": "Data structure corresponding to the arguments of the command..",
+                                "type": "object",
+                                "default": {},
+                                "required": [],
+                                "properties": {
+                                    "orbit": {
+                                        "title": "Satellite orbital motion elements",
+                                        "description": "Change parameters related to the orbital motion of the satellite and the Earth's rotation and orbital motion.  If you want to change this, change orbit_element to true.",
+                                        "type": "object",
+                                        "default": {},
+                                        "required": [
+                                            "epoch",
+                                            "obliquity",
+                                            "ecliptic_longitude",
+                                            "earth_rotation",
+                                            "sat_orbital_period",
+                                            "sat_ascending_node",
+                                            "sat_latitude_argument",
+                                            "sat_inclination"
+                                        ],
+                                        "properties": {
+                                            "epoch": {
+                                                "title": "Reference epoch for orbital elements",
+                                                "description": "Time evolution is performed based on this UNIX epoch time (s).",
+                                                "type": "integer",
+                                                "minimum": 0,
+                                                "maximum": 4294967295,
+                                                "default": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "obliquity": {
+                                                "title": "Obliquity of the ecliptic",
+                                                "description": "This angle (deg) is the angle between the earth's equator and the ecliptic, which varies slightly with the precession of the ecliptic.",
+                                                "type": "number",
+                                                "default": 23.4392794,
+                                                "minimum": 0,
+                                                "maximum": 180,
+                                                "examples": [
+                                                    23.4392794
+                                                ]
+                                            },
+                                            "ecliptic_longitude": {
+                                                "title": "Ecliptic longitude",
+                                                "description": "This angle (deg) is the angle between the vernal equinox and the sun along the ecliptic, and represents the earth's orbital motion.",
+                                                "type": "number",
+                                                "default": 0,
+                                                "minimum": 0,
+                                                "maximum": 380,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "earth_rotation": {
+                                                "title": "Earth rotation angle",
+                                                "description": "This angle (deg) is the angle between the vernal equinox along the equatorial plane of the earth and the earth's prime meridian, and represents the earth's rotational motion.",
+                                                "type": "number",
+                                                "default": 0,
+                                                "minimum": 0,
+                                                "maximum": 380,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "sat_orbital_period": {
+                                                "title": "Satellite orbital period",
+                                                "description": "Satellite orbital period (s) in Earth's circular orbit.",
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "default": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "sat_ascending_node": {
+                                                "title": "Satellite right ascension of the ascending node",
+                                                "description": "This angle (deg) is the angle between the vernal equinox and the ascending intersection along the equatorial plane of the earth.",
+                                                "type": "number",
+                                                "default": 0,
+                                                "minimum": 0,
+                                                "maximum": 180,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "sat_latitude_argument": {
+                                                "title": "Satellite argument of latitude",
+                                                "description": "This angle (deg) is an angular parameter that defines the position of a body moving along a Kepler orbit.",
+                                                "type": "number",
+                                                "default": 0,
+                                                "minimum": 0,
+                                                "maximum": 180,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "sat_inclination": {
+                                                "title": "The sat_inclination Schema",
+                                                "description": "This angle (deg) is the angle between the earth's equator and the satellite orbital plane.",
+                                                "type": "number",
+                                                "default": 0,
+                                                "minimum": 0,
+                                                "maximum": 180,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            }
+                                        },
+                                        "options": {
+                                            "collapsed": true
+                                        }
+                                    },
+                                    "rw_controller": {
+                                        "title": "RW Controller parameters",
+                                        "description": "Change parameters related to RW controllers.",
+                                        "type": "object",
+                                        "default": {},
+                                        "required": [],
+                                        "properties": {
+                                            "d": {
+                                                "title": "RW-D Controller",
+                                                "description": "RW-D Controller parameters. If you want to change this, change rw_d to true.",
+                                                "type": "object",
+                                                "default": {},
+                                                "required": [
+                                                    "gain"
+                                                ],
+                                                "properties": {
+                                                    "gain": {
+                                                        "title": "Gain",
+                                                        "type": "object",
+                                                        "default": {},
+                                                        "required": [
+                                                            "d"
+                                                        ],
+                                                        "properties": {
+                                                            "d": {
+                                                                "title": "Differential gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "pd": {
+                                                "title": "RW-PD Controller",
+                                                "description": "RW-PD Controller parameters. If you want to change this, change rw_pd to true.",
+                                                "type": "object",
+                                                "default": {},
+                                                "required": [
+                                                    "gain"
+                                                ],
+                                                "properties": {
+                                                    "gain": {
+                                                        "title": "Gain",
+                                                        "type": "object",
+                                                        "default": {},
+                                                        "required": [
+                                                            "p",
+                                                            "d"
+                                                        ],
+                                                        "properties": {
+                                                            "p": {
+                                                                "title": "Proportional gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            },
+                                                            "d": {
+                                                                "title": "Differential gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "sun_pd": {
+                                                "title": "RW-sPD Controller",
+                                                "description": "RW-sPD Controller parameters. If you want to change this, change rw_sun_pd to true.",
+                                                "type": "object",
+                                                "default": {},
+                                                "required": [
+                                                    "gain"
+                                                ],
+                                                "properties": {
+                                                    "gain": {
+                                                        "title": "Gain",
+                                                        "type": "object",
+                                                        "default": {},
+                                                        "required": [
+                                                            "p",
+                                                            "d"
+                                                        ],
+                                                        "properties": {
+                                                            "p": {
+                                                                "title": "Proportional gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            },
+                                                            "d": {
+                                                                "title": "Differential gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "sun_acq_pd": {
+                                                "title": "RW-Acq-sPD Controller",
+                                                "description": "RW-Acq-sPD Controller parameters. If you want to change this, change rw_acq_sun_pd to true.",
+                                                "type": "object",
+                                                "default": {},
+                                                "required": [
+                                                    "gain"
+                                                ],
+                                                "properties": {
+                                                    "gain": {
+                                                        "title": "Gain",
+                                                        "type": "object",
+                                                        "default": {},
+                                                        "required": [
+                                                            "p",
+                                                            "d"
+                                                        ],
+                                                        "properties": {
+                                                            "p": {
+                                                                "title": "Proportional gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            },
+                                                            "d": {
+                                                                "title": "Differential gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "pid": {
+                                                "title": "RW-PID Controller",
+                                                "description": "RW-Acq-sPD Controller parameters. If you want to change this, change rw_pid to true.",
+                                                "type": "object",
+                                                "default": {},
+                                                "required": [
+                                                    "gain",
+                                                    "integrator_threshold"
+                                                ],
+                                                "properties": {
+                                                    "gain": {
+                                                        "title": "Gain",
+                                                        "type": "object",
+                                                        "default": {},
+                                                        "required": [
+                                                            "p",
+                                                            "i",
+                                                            "d"
+                                                        ],
+                                                        "properties": {
+                                                            "p": {
+                                                                "title": "Proportional gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            },
+                                                            "i": {
+                                                                "title": "Integral gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            },
+                                                            "d": {
+                                                                "title": "Differential gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            }
+                                                        }
+                                                    },
+                                                    "integrator_threshold": {
+                                                        "title": "Integrator reset threshold",
+                                                        "type": "number",
+                                                        "default": 0,
+                                                        "examples": [
+                                                            0
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "max_torque": {
+                                                "title": "Maximum output torque of RW",
+                                                "description": "Output torque (Nm) saturation threshold. Torque command values above this value are subject to saturation processing. If you want to change this, change rw_max_torque to true.",
+                                                "type": "number",
+                                                "default": 0,
+                                                "minimum": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "operation_point": {
+                                                "title": "RW operating point",
+                                                "description": "RW rotates at this value (deg/s) on average. If you want to change this, change rw_max_torque to true.",
+                                                "type": "number",
+                                                "default": 0,
+                                                "minimum": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            }
+                                        },
+                                        "options": {
+                                            "collapsed": true
+                                        }
+                                    },
+                                    "mtq_controller": {
+                                        "title": "MTQ Controller parameters",
+                                        "description": "Change parameters related to MTQ controllers.",
+                                        "type": "object",
+                                        "default": {},
+                                        "required": [],
+                                        "properties": {
+                                            "b_dot": {
+                                                "title": "MTQ-Bdot Controller",
+                                                "description": "MTQ-Bdot Controller parameters. If you want to change this, change mtq_b_dot to true.",
+                                                "type": "object",
+                                                "default": {},
+                                                "required": [
+                                                    "gain"
+                                                ],
+                                                "properties": {
+                                                    "gain": {
+                                                        "title": "Gain",
+                                                        "type": "object",
+                                                        "default": {},
+                                                        "required": [
+                                                            "d"
+                                                        ],
+                                                        "properties": {
+                                                            "d": {
+                                                                "title": "Differential gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "hbb": {
+                                                "title": "MTQ-hBb Controller",
+                                                "description": "MTQ-hBb Controller parameters. If you want to change this, change mtq_hbb to true.",
+                                                "type": "object",
+                                                "default": {},
+                                                "required": [
+                                                    "gain"
+                                                ],
+                                                "properties": {
+                                                    "gain": {
+                                                        "title": "Gain",
+                                                        "type": "object",
+                                                        "default": {},
+                                                        "required": [
+                                                            "d"
+                                                        ],
+                                                        "properties": {
+                                                            "d": {
+                                                                "title": "Differential gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "d": {
+                                                "title": "MTQ-D Controller",
+                                                "description": "MTQ-D Controller parameters. If you want to change this, change mtq_d to true.",
+                                                "type": "object",
+                                                "default": {},
+                                                "required": [
+                                                    "gain"
+                                                ],
+                                                "properties": {
+                                                    "gain": {
+                                                        "title": "Gain",
+                                                        "type": "object",
+                                                        "default": {},
+                                                        "required": [
+                                                            "d"
+                                                        ],
+                                                        "properties": {
+                                                            "d": {
+                                                                "title": "Differential gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "pd": {
+                                                "title": "MTQ-PD Controller",
+                                                "description": "MTQ-PD Controller parameters. If you want to change this, change mtq_pd to true.",
+                                                "type": "object",
+                                                "default": {},
+                                                "required": [
+                                                    "gain"
+                                                ],
+                                                "properties": {
+                                                    "gain": {
+                                                        "title": "Gain",
+                                                        "type": "object",
+                                                        "default": {},
+                                                        "required": [
+                                                            "p",
+                                                            "d"
+                                                        ],
+                                                        "properties": {
+                                                            "p": {
+                                                                "title": "Proportional gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            },
+                                                            "d": {
+                                                                "title": "Differential gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "sun_pd": {
+                                                "title": "MTQ-sPD Controller",
+                                                "description": "MTQ-sPD Controller parameters. If you want to change this, change mtq_sun_pd to true.",
+                                                "type": "object",
+                                                "default": {},
+                                                "required": [
+                                                    "gain"
+                                                ],
+                                                "properties": {
+                                                    "gain": {
+                                                        "title": "Gain",
+                                                        "type": "object",
+                                                        "default": {},
+                                                        "required": [
+                                                            "p",
+                                                            "d"
+                                                        ],
+                                                        "properties": {
+                                                            "p": {
+                                                                "title": "Proportional gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            },
+                                                            "d": {
+                                                                "title": "Differential gain",
+                                                                "type": "number",
+                                                                "default": 0,
+                                                                "examples": [
+                                                                    0
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "max_mag_moment": {
+                                                "title": "Maximum output torque of RW",
+                                                "description": "Output magnetic moment (Am^2) saturation threshold. magnetic moment command values above this value are subject to saturation processing. If you want to change this, change mtq_max_mag_moment to true.",
+                                                "type": "number",
+                                                "default": 0,
+                                                "minimum": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            }
+                                        },
+                                        "options": {
+                                            "collapsed": true
+                                        }
+                                    },
+                                    "foam_estimator": {
+                                        "title": "FOAM weight parameters",
+                                        "description": "Change weighting parameters for attitude estimation. If you want to change this, change foam_weight to true.",
+                                        "type": "object",
+                                        "default": {},
+                                        "required": [
+                                            "sun_vector_weight",
+                                            "mag_vector_weight"
+                                        ],
+                                        "properties": {
+                                            "sun_vector_weight": {
+                                                "title": "FSS weight",
+                                                "description": "Weights of FSS sun direction vector measurements.",
+                                                "type": "number",
+                                                "default": 0.5,
+                                                "minimum": 0,
+                                                "maximum": 1,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "mag_vector_weight": {
+                                                "title": "GAS weight",
+                                                "description": "Weights of GAS earth's magnetic field vector measurements.",
+                                                "type": "number",
+                                                "default": 0.5,
+                                                "minimum": 0,
+                                                "maximum": 1,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            }
+                                        },
+                                        "options": {
+                                            "collapsed": true
+                                        }
+                                    },
+                                    "mkf_estimator": {
+                                        "title": "MKF weight parameters",
+                                        "description": "Change weighting parameters for attitude and angular velocity bias estimation. If you want to change this, change mkf_weight to true.",
+                                        "type": "object",
+                                        "default": {},
+                                        "required": [
+                                            "q_state_weight",
+                                            "bias_state_weight",
+                                            "stt_observation_weight",
+                                            "fss_observation_weight",
+                                            "gas_observation_weight"
+                                        ],
+                                        "properties": {
+                                            "q_state_weight": {
+                                                "title": "Attitude weight",
+                                                "description": "State weights of attitude estimation.",
+                                                "type": "number",
+                                                "default": 0.1,
+                                                "minimum": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "bias_state_weight": {
+                                                "title": "Angular velocity bias weight",
+                                                "description": "State weights of angular velocity bias estimation.",
+                                                "type": "number",
+                                                "default": 0.1,
+                                                "minimum": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "stt_observation_weight": {
+                                                "title": "STT weight",
+                                                "description": "Observation weights of STT attitude quaternion measurements.",
+                                                "type": "number",
+                                                "default": 0.1,
+                                                "minimum": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "fss_observation_weight": {
+                                                "title": "FSS weight",
+                                                "description": "Observation weights of FSS sun direction vector measurements.",
+                                                "type": "number",
+                                                "default": 0.1,
+                                                "minimum": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "gas_observation_weight": {
+                                                "title": "GAS weight",
+                                                "description": "Observation weights of GAS earth's magnetic field vector.",
+                                                "type": "number",
+                                                "default": 0.1,
+                                                "minimum": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            }
+                                        },
+                                        "options": {
+                                            "collapsed": true
+                                        }
+                                    },
+                                    "supervisor": {
+                                        "title": "Controller supervisor parameters",
+                                        "description": "Change parameters related to controller supervisor.",
+                                        "type": "object",
+                                        "default": {},
+                                        "required": [],
+                                        "dependencies": {
+                                            "operation_mode": [
+                                                "pre_operation_mode",
+                                                "scenario",
+                                                "pre_scenario"
+                                            ],
+                                            "pre_operation_mode": [
+                                                "operation_mode",
+                                                "scenario",
+                                                "pre_scenario"
+                                            ],
+                                            "scenario": [
+                                                "operation_mode",
+                                                "pre_operation_mode",
+                                                "pre_scenario"
+                                            ],
+                                            "pre_scenario": [
+                                                "operation_mode",
+                                                "pre_operation_mode",
+                                                "scenario"
+                                            ]
+                                        },
+                                        "properties": {
+                                            "operation_mode": {
+                                                "title": "Current operation mode",
+                                                "description": "Current operating mode of the controller supervisor. If you want to change this, change supervisor_status to true.",
+                                                "type": "string",
+                                                "enum": [
+                                                    "normal",
+                                                    "foam",
+                                                    "mkf",
+                                                    "no_change"
+                                                ],
+                                                "default": "no_change",
+                                                "examples": [
+                                                    "normal",
+                                                    "foam",
+                                                    "mkf",
+                                                    "no_change"
+                                                ]
+                                            },
+                                            "pre_operation_mode": {
+                                                "title": "Previous operation mode",
+                                                "description": "Previous operating mode of the controller supervisor. If you want to change this, change supervisor_status to true.",
+                                                "type": "string",
+                                                "enum": [
+                                                    "normal",
+                                                    "foam",
+                                                    "mkf",
+                                                    "no_change"
+                                                ],
+                                                "default": "no_change",
+                                                "examples": [
+                                                    "normal",
+                                                    "foam",
+                                                    "mkf",
+                                                    "no_change"
+                                                ]
+                                            },
+                                            "scenario": {
+                                                "title": "Current scenario",
+                                                "description": "Current scenario of the controller supervisor. If you want to change this, change supervisor_status to true.",
+                                                "type": "string",
+                                                "enum": [
+                                                    "satellite_separate",
+                                                    "wake_up",
+                                                    "detumbling",
+                                                    "paddle_unfold",
+                                                    "sun_acquisition",
+                                                    "day_side",
+                                                    "day_to_night_dark",
+                                                    "day_to_night_bright",
+                                                    "night_side",
+                                                    "night_to_day_dark",
+                                                    "night_to_day_bright",
+                                                    "attitude_lost",
+                                                    "unstable_rotation",
+                                                    "rotation_x",
+                                                    "rw_failure",
+                                                    "escape",
+                                                    "no_change"
+                                                ],
+                                                "default": "no_change",
+                                                "examples": [
+                                                    "satellite_separate",
+                                                    "wake_up",
+                                                    "detumbling",
+                                                    "paddle_unfold",
+                                                    "sun_acquisition",
+                                                    "day_side",
+                                                    "day_to_night_dark",
+                                                    "day_to_night_bright",
+                                                    "night_side",
+                                                    "night_to_day_dark",
+                                                    "night_to_day_bright",
+                                                    "attitude_lost",
+                                                    "unstable_rotation",
+                                                    "rotation_x",
+                                                    "rw_failure",
+                                                    "escape",
+                                                    "no_change"
+                                                ]
+                                            },
+                                            "pre_scenario": {
+                                                "title": "Previous scenario",
+                                                "description": "Previous scenario of the controller supervisor. If you want to change this, change supervisor_status to true.",
+                                                "type": "string",
+                                                "enum": [
+                                                    "satellite_separate",
+                                                    "wake_up",
+                                                    "detumbling",
+                                                    "paddle_unfold",
+                                                    "sun_acquisition",
+                                                    "day_side",
+                                                    "day_to_night_dark",
+                                                    "day_to_night_bright",
+                                                    "night_side",
+                                                    "night_to_day_dark",
+                                                    "night_to_day_bright",
+                                                    "attitude_lost",
+                                                    "unstable_rotation",
+                                                    "rotation_x",
+                                                    "rw_failure",
+                                                    "escape",
+                                                    "no_change"
+                                                ],
+                                                "default": "no_change",
+                                                "examples": [
+                                                    "satellite_separate",
+                                                    "wake_up",
+                                                    "detumbling",
+                                                    "paddle_unfold",
+                                                    "sun_acquisition",
+                                                    "day_side",
+                                                    "day_to_night_dark",
+                                                    "day_to_night_bright",
+                                                    "night_side",
+                                                    "night_to_day_dark",
+                                                    "night_to_day_bright",
+                                                    "attitude_lost",
+                                                    "unstable_rotation",
+                                                    "rotation_x",
+                                                    "rw_failure",
+                                                    "escape",
+                                                    "no_change"
+                                                ]
+                                            },
+                                            "normal_limit_time": {
+                                                "title": "Scenario waiting time threshold",
+                                                "description": "Waiting time threshold (s) for state transitions in normal operation. If you want to change this, change supervisor_normal_limit_time to true.",
+                                                "type": "object",
+                                                "default": {},
+                                                "required": [
+                                                    "wake_up",
+                                                    "detumbling",
+                                                    "paddle_unfold",
+                                                    "sun_acquisition",
+                                                    "day_night_bright_from_day_spd",
+                                                    "day_night_bright_from_dark_spd",
+                                                    "night_day_bright_from_night_pd",
+                                                    "night_from_dark_spd",
+                                                    "dark_detect_attitude_lost",
+                                                    "sun_search_rotation"
+                                                ],
+                                                "properties": {
+                                                    "wake_up": {
+                                                        "title": "Component wake up",
+                                                        "type": "integer",
+                                                        "default": 0,
+                                                        "minimum": 0,
+                                                        "maximum": 2147483647,
+                                                        "examples": [
+                                                            0
+                                                        ]
+                                                    },
+                                                    "detumbling": {
+                                                        "title": "Detumbling",
+                                                        "type": "integer",
+                                                        "default": 0,
+                                                        "minimum": 0,
+                                                        "maximum": 2147483647,
+                                                        "examples": [
+                                                            0
+                                                        ]
+                                                    },
+                                                    "paddle_unfold": {
+                                                        "title": "Paddle expansion",
+                                                        "type": "integer",
+                                                        "default": 0,
+                                                        "minimum": 0,
+                                                        "maximum": 2147483647,
+                                                        "examples": [
+                                                            0
+                                                        ]
+                                                    },
+                                                    "sun_acquisition": {
+                                                        "title": "Sun acquisition control",
+                                                        "type": "integer",
+                                                        "default": 0,
+                                                        "minimum": 0,
+                                                        "maximum": 2147483647,
+                                                        "examples": [
+                                                            0
+                                                        ]
+                                                    },
+                                                    "day_night_bright_from_day_spd": {
+                                                        "title": "RW-sPD control when entering day night bright from day side",
+                                                        "type": "integer",
+                                                        "default": 0,
+                                                        "minimum": 0,
+                                                        "maximum": 2147483647,
+                                                        "examples": [
+                                                            0
+                                                        ]
+                                                    },
+                                                    "day_night_bright_from_dark_spd": {
+                                                        "title": "RW-sPD control when entering day night bright from dark",
+                                                        "type": "integer",
+                                                        "default": 0,
+                                                        "minimum": 0,
+                                                        "maximum": 2147483647,
+                                                        "examples": [
+                                                            0
+                                                        ]
+                                                    },
+                                                    "night_day_bright_from_night_pd": {
+                                                        "title": "RW-PD control when entering night day bright from night side",
+                                                        "type": "integer",
+                                                        "default": 0,
+                                                        "minimum": 0,
+                                                        "maximum": 2147483647,
+                                                        "examples": [
+                                                            0
+                                                        ]
+                                                    },
+                                                    "night_from_dark_spd": {
+                                                        "title": "RW-sPD control when entering night side from dark",
+                                                        "type": "integer",
+                                                        "default": 0,
+                                                        "minimum": 0,
+                                                        "maximum": 2147483647,
+                                                        "examples": [
+                                                            0
+                                                        ]
+                                                    },
+                                                    "dark_detect_attitude_lost": {
+                                                        "title": "Detection of Attitude lost",
+                                                        "type": "integer",
+                                                        "default": 0,
+                                                        "minimum": 0,
+                                                        "maximum": 2147483647,
+                                                        "examples": [
+                                                            0
+                                                        ]
+                                                    },
+                                                    "sun_search_rotation": {
+                                                        "title": "Axis switching of sun search rotation",
+                                                        "type": "integer",
+                                                        "default": 0,
+                                                        "minimum": 0,
+                                                        "maximum": 2147483647,
+                                                        "examples": [
+                                                            0
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "gps_d2n_threshold": {
+                                                "title": "GPS day to night threshold angle",
+                                                "description": "I don't know the details. If you want to change this, change gps_d2n_threshold to true.",
+                                                "type": "number",
+                                                "default": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "gps_n2d_threshold": {
+                                                "title": "GPS night to day threshold angle",
+                                                "description": "I don't know the details. If you want to change this, change gps_n2d_threshold to true.",
+                                                "type": "number",
+                                                "default": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "unstable_rotation_threshold": {
+                                                "title": "Unstable rotation detection",
+                                                "description": "Angular velocity lower limit threshold (deg/s) for unstable rotation detection. If you want to change this, change unstable_rotation_threshold to true.",
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "default": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "attitude_lost_threshold": {
+                                                "title": "Attitude lost detection",
+                                                "description": "Angular velocity lower limit threshold (deg/s) for attitude lost detection. If you want to change this, attitude_lost_threshold to true.",
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "default": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "detumbling_threshold": {
+                                                "title": "End of detumbling detection",
+                                                "description": "Angular velocity (deg/s) upper limit threshold for End of detumbling detection. If you want to change this, change detumbling_threshold to true.",
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "default": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "sun_acq_time_threshold": {
+                                                "title": "Sun acquisition continuous time",
+                                                "description": "If the sun capture condition can be maintained during this time (s), the scenario is transitioned. If you want to change this, change sun_acq_time_threshold to true.",
+                                                "type": "integer",
+                                                "default": 0,
+                                                "minimum": 0,
+                                                "maximum": 2147483647,
+                                                "examples": [
+                                                    100
+                                                ]
+                                            },
+                                            "sun_acq_angle_threshold": {
+                                                "title": "Sun acquisition detection angle",
+                                                "description": "Sun elongation (deg) threshold for sun acquisition detection. If you want to change this, change sun_acq_angle_threshold to true.",
+                                                "minimum": 0,
+                                                "maximum": 90,
+                                                "type": "number",
+                                                "default": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            },
+                                            "sun_detect_threshold": {
+                                                "title": "Sun detection light intensity threshold",
+                                                "description": "Solar detection light intensity threshold (V) of CSS. If you want to change this, change sun_detect_threshold to true.",
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "default": 0,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            }
+                                        },
+                                        "options": {
+                                            "collapsed": true
+                                        }
+                                    },
+                                    "one_axis_rotation": {
+                                        "title": "One axis rotation process parameter",
+                                        "description": "Change parameters related to one axis rotation process. If you want to change this, change one_axis_rotation to true.",
+                                        "type": "object",
+                                        "default": {},
+                                        "required": [
+                                            "start_attitude",
+                                            "end_attitude",
+                                            "step_number"
+                                        ],
+                                        "properties": {
+                                            "start_attitude": {
+                                                "title": "Rotation start attitude",
+                                                "description": "Attitude when starting one axis rotation process",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "number",
+                                                    "minimum": -1,
+                                                    "maximum": 1
+                                                },
+                                                "minItems": 4,
+                                                "maxItems": 4,
+                                                "default": [
+                                                    0,
+                                                    0,
+                                                    0,
+                                                    1
+                                                ],
+                                                "examples": [
+                                                    0,
+                                                    0,
+                                                    0,
+                                                    1
+                                                ]
+                                            },
+                                            "end_attitude": {
+                                                "title": "Rotation end attitude",
+                                                "description": "Attitude quaternion [x, y, z, w] when end one axis rotation process",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "number",
+                                                    "minimum": -1,
+                                                    "maximum": 1
+                                                },
+                                                "minItems": 4,
+                                                "maxItems": 4,
+                                                "default": [
+                                                    0,
+                                                    0,
+                                                    0,
+                                                    1
+                                                ],
+                                                "examples": [
+                                                    0,
+                                                    0,
+                                                    0,
+                                                    1
+                                                ]
+                                            },
+                                            "step_number": {
+                                                "title": "Step number",
+                                                "description": "How many divisions of rotation to control interpolation.",
+                                                "type": "integer",
+                                                "default": 100,
+                                                "minimum": 0,
+                                                "maximum": 4294967295,
+                                                "examples": [
+                                                    0
+                                                ]
+                                            }
+                                        },
+                                        "options": {
+                                            "collapsed": true
+                                        }
+                                    }
+                                }
+                            },
+                            "apply_bit": {
+                                "title": "Command parameter change apply bit",
+                                "description": "Changing the bit corresponding to each command argument pair to true applies the rewriting.",
+                                "type": "object",
+                                "default": {},
+                                "required": [],
+                                "dependencies": {},
+                                "properties": {
+                                    "orbit_element": {
+                                        "title": "Change orbital elements",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "rw_d": {
+                                        "title": "Change RW-D controller parameters",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "rw_pd": {
+                                        "title": "Change RW-PD controller parameters",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "rw_sun_pd": {
+                                        "title": "Change RW-sPD controller parameters",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "rw_acq_sun_pd": {
+                                        "title": "Change RW-Acq-sPD controller parameters",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "rw_pid": {
+                                        "title": "Change RW-PID controller parameters",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "rw_max_torque": {
+                                        "title": "Change RW maximum output torque",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "rw_operation_point": {
+                                        "title": "Change RW operating point",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "mtq_b_dot": {
+                                        "title": "Change MTQ-Bdot controller parameters",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "mtq_hbb": {
+                                        "title": "Change MTQ-hBb controller parameters",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "mtq_d": {
+                                        "title": "Change MTQ-D controller parameters",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "mtq_pd": {
+                                        "title": "Change MTQ-PD controller parameters",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "mtq_sun_pd": {
+                                        "title": "Change MTQ-sPD controller parameters",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "mtq_max_mag_moment": {
+                                        "title": "Change MTQ maximum output magnetic moment",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "foam_weight": {
+                                        "title": "Change FOAM sensor weights",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "mkf_weight": {
+                                        "title": "Change MKF weights",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "supervisor_status": {
+                                        "title": "Change supervisor status",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "supervisor_normal_limit_time": {
+                                        "title": "Change supervisor process waiting time",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "gps_d2n_threshold": {
+                                        "title": "Change GPS day to night threshold",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "gps_n2d_threshold": {
+                                        "title": "Change GPS night to day threshold",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "unstable_rotation_threshold": {
+                                        "title": "Change unstable rotation detection threshold",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "attitude_lost_threshold": {
+                                        "title": "Change attitude lost detection threshold",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "detumbling_threshold": {
+                                        "title": "Change end of detumbling detection threshold",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "sun_acq_time_threshold": {
+                                        "title": "Change continuous sun acquisition detection threshold",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "sun_acq_angle_threshold": {
+                                        "title": "sun acquisition detection angle threshold",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "sun_detect_threshold": {
+                                        "title": "Change sun detection threshold",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    },
+                                    "one_axis_rotation": {
+                                        "title": "Change one axis rotation parameters",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "examples": [
+                                            false
+                                        ]
+                                    }
+                                },
+                                "options": {
+                                    "collapsed": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
