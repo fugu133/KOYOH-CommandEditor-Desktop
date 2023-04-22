@@ -19,7 +19,7 @@
       "src",
       "package.json",
       "package-lock.json"
-    ],
+    ],"extraFiles": ["assets/cmd-converter.exe"],
     "mac": {
       "icon": "resource/image/icon_mac.icns",
       "target": [
@@ -46,6 +46,10 @@
     "foundation-sites": "^6.7.5"
   },
   "dependencies": {
-    "@json-editor/json-editor": "^2.9.1"
+    "@json-editor/json-editor": "^2.9.1",
+    "bootstrap": "^5.2.3",
+    "foundation": "^4.2.1-1",
+    "foundation-sites": "^6.7.5",
+    "font-awesome": "^4.7.0"
   }
 }
